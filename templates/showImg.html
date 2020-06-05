@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>展示圖片</title>
+{% endblock %}
+{% block content %}
+    {% for item in imgs %}
+        <img src="{{ item.img_url.url }}", width="150"><br/>
+    {% endfor %}
+{% endblock %}

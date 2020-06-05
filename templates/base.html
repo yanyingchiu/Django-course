@@ -1,0 +1,36 @@
+{% load static %}
+<html>
+    <nav class="navbar">
+        <a class="navbar-brand" href="/home">My blog</a>
+        <a class="navbar-brand" href="/showImg">My Image</a>
+        <a class="navbar-brand" href="https://github.com/yanyingchiu">My github</a>
+        <!--修改-->
+        {% if request.user.is_superuser %}
+            <a class="navbar-brand" href="/admin">Admin</a>
+            <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+        {% elif request.user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+            <a class="navbar-brand" href="/register">Sign up</a>
+        {% endif %}
+        <!--到這邊-->
+    </nav>
+<head>
+    <meta charset="utf-8">
+    {% block title %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="page-header">
+        <h1><a href="/home">My Blog</a></h1>
+    </div>   
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
